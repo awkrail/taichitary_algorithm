@@ -1,0 +1,2 @@
+# taichitary_algorithm
+競技プログラミング用のアルゴリズムの関数まとめ
