@@ -1,5 +1,7 @@
 #include "taichitary.h"
 /**
+ * stack
+ *
 int top, S[1000];
 
 void push(int x){
@@ -40,6 +42,10 @@ int main(){
     cout << pop() << endl;
 }
  **/
+
+/**
+ * queue
+ *
 #define LEN 100005
 
 struct pp{
@@ -79,8 +85,8 @@ int main(){
     while(head != tail){
         u = dequeue();
         if(u.t > q){
-            u.t -= q; /**残り時間を計算**/
-            elaps += q; /**累計時間を計算**/
+            u.t -= q; //残り時間を計算
+            elaps += q; //累計時間を計算
             enqueue(u);
         }else{
             elaps += u.t;
@@ -90,3 +96,5 @@ int main(){
         }
     }
 }
+
+**/
