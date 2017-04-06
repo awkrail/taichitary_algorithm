@@ -107,15 +107,3 @@ void selectionSortUp(int *a, int N){
         //一回内側ですべての数についてループをして,一番小さいものの要素と交換していく
     }
 }
-
-// 線形探索 O(nq)
-// 配列, 配列の要素数, 取り出したい値
-bool linearSearch(int *a, int n,int key){
-    int i = 0;
-    a[n] = key; //一番後ろに番兵をおく
-
-    while(a[i] != key) i++;
-
-    //要素が番兵より前で見つかればtrueを返す
-    return i != n;
-}
