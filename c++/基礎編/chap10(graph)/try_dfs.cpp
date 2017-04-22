@@ -1,4 +1,4 @@
-#include "taichitary.h"
+#include "../chap11(重み付きgraph)/taichitary.h"
 #define V_MAX 100
 #define WHITE 0
 #define GRAY 1
