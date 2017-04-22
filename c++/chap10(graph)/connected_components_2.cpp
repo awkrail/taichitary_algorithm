@@ -122,53 +122,65 @@ bool linearSearch(int *a, int n,int key){
 
 
 #define V_MAX 100000
+#define NIL -1
 
-vector<int> v[V_MAX];
-int check[V_MAX];
+int n;
+vector<int> G[V_MAX];
+int color[V_MAX];
 
-bool dfs(int s, int t){
+void dfs(int u, int c){
 
-    for(int i=0; i<v[s].size(); i++){
-        int to = v[s][i];
-        cout << to << endl;
-        if(check[to]) continue;
-        if(to == t) return true;
-        check[to] = 1;
-        dfs(to, t); //ここがおかしい気がする
+    stack<int> S;
+    S.push(u);
+    color[u] = c;
+
+    while(!S.empty()){
+
+        int l = S.top(); S.pop();
+
+        for(int i=0; i<G[l].size(); i++){
+            int v = G[l][i];
+            if(color[v] == NIL){
+                color[v] = c;
+                S.push(v);
+            }
+        }
     }
-    return false;
+}
+
+void assignColor(){
+    for(int i=0; i<n; i++) color[i] = NIL;
+
+    int id = 1;
+
+    for(int j=0; j<n; j++){
+        if(color[j] == NIL) dfs(j, id++);
+    }
+
 }
 
 int main(){
 
-    int n, m;
-    cin >> n >> m;
-    int to, from;
+    int r;
+    cin >> n >> r;
 
-    for(int i=0; i<m; i++){
+    for(int i=0; i<r; i++){
+        int from, to;
         cin >> from >> to;
-        v[from].pb(to);
-        v[to].pb(from);
-        //無向リンクなので両方向に貼る
+        G[from].pb(to);
+        G[to].pb(from);
     }
 
-    int ques;
-    cin >> ques;
-    vector<bool> flgs;
+    assignColor();
 
-    for(int j=0; j<ques; j++){
-        int s, t;
+    int q;
+    cin >> q;
+
+    int s, t;
+
+    for(int j=0; j<q; j++){
         cin >> s >> t;
-        for(int k=0; k<V_MAX; k++) check[k] = 0;
-        check[s] = 1; //始点に戻ってこないようにする
-        bool flg = dfs(s, t);
-        flgs.pb(flg);
-    }
-
-    vector<bool>::iterator ite;
-    for(ite = flgs.begin(); ite != flgs.end(); ite++){
-        if(*ite) cout << "yes" << endl;
+        if(color[s] == color[t]) cout << "yes" << endl;
         else cout << "no" << endl;
     }
-
 }
