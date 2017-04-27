@@ -1,4 +1,4 @@
-#include "taichitary.h"
+#include "../../taichitary.h"
 
 int main(){
 }

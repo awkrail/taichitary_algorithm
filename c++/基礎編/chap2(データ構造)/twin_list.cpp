@@ -1,4 +1,4 @@
-#include "taichitary.h"
+#include "../../taichitary.h"
 // TODO: Segmentation fault: 11を直す
 
 struct Node{
