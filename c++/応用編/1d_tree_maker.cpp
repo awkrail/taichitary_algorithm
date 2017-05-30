@@ -6,17 +6,17 @@ struct Tree{
 
 Tree T[50];
 int np=0;
-int t=0;
 int a[50];
 
 int make_1d_tree(int l, int r){
 
     if (l>=r) return -1;
 
+    sort(a+l, a+r);
+
     int mid = (l+r)/2;
 
-
-    t = np;
+    int t = np;
     np++;
     T[t].location = mid;
     T[t].l = make_1d_tree(l, mid);
@@ -49,15 +49,17 @@ int main(){
 
     int n;
     cin >> n;
+    int t=0;
 
     for(int i=0; i<n; i++){
         cin >> a[i];
     }
 
+
     int r = make_1d_tree(0, n);
 
-    cout << r << endl;
+    cout << T[0].l << T[0].r << T[0].location << endl;
 
-    cout << T[3].l << T[3].r << T[3].location << endl;
+    find(0, 2, 5);
 
 }
